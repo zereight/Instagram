@@ -8,6 +8,15 @@ export default {
 
             // try {
                 if(user.loginSecret === secret){
+                    // secret 썼으면 삭제
+                    await prisma.updateUser({
+                        where:{
+                            id: user.id
+                        },
+                        data: {
+                            loginSecret: ""
+                        }
+                    });
                     //JWT
                     const token = generateToken(user.id);
                     return token;
