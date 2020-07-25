@@ -3,11 +3,9 @@ import { prisma } from "../../../../generated/prisma-client";
 
 export default {
     Query: {
-        seeUser: (_, args, {request}) => {
-            isAuthenticated(request);
-
+        seeUser: async (_, args) => {
             const {id}= args;
-            return prisma.user({id});
+            return prisma.user({ id });
         }
     }
 }
